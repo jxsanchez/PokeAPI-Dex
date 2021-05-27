@@ -1,0 +1,136 @@
+a,
+a:hover,
+a:visited {
+    text-decoration: none;
+}
+
+.nav-btn {
+    background: #a9a9a9;
+    color: #fff;
+}
+
+.fa {
+    font-size: 1.3rem;
+}
+
+.footer {
+    background: #ff0000;
+    bottom: 0;
+    padding: 20px 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+/************************* BOOTSTRAP *************************/
+.container {
+    background: #f3f3f3;
+    height: fit-content;
+    padding: 50px;
+}
+
+.navbar {
+    padding: 20px;
+}
+
+/************************* POKEMON.BLADE.PHP *************************/
+.poke-img {
+    width: 100%;
+}
+
+.poke-name {
+    margin-bottom: 15px;
+}
+
+.type-container {
+    height: fit-content;
+    margin-bottom: 10px;
+    padding: 10px 0;
+}
+
+.poke-desc {
+}
+
+/************************* TYPES *************************/
+.type-btn {
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-right: 10px;
+    padding: 10px 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.normal {
+    background: #a8a77a;
+}
+
+.fire {
+    background: #ee8130;
+}
+
+.water {
+    background: #6390f0;
+}
+
+.electric {
+    background: #f7d02c;
+}
+
+.grass {
+    background: #7ac74c;
+}
+
+.ice {
+    background: #96d9d6;
+}
+
+.fighting {
+    background: #c22e28;
+}
+
+.poison {
+    background: #a33ea1;
+}
+
+.ground {
+    background: #e2bf65;
+}
+
+.psychic {
+    background: #f95587;
+}
+
+.bug {
+    background: #a6b91a;
+}
+
+.rock {
+    background: #b6a136;
+}
+
+.ghost {
+    background: #735797;
+}
+
+.dragon {
+    background: #6f35fc;
+}
+
+.dark {
+    background: #705746;
+}
+
+.steel {
+    background: #b7b7ce;
+}
+
+.fairy {
+    background: #d685ad;
+}
+
+.flying {
+    background: #a98ff3;
+}
