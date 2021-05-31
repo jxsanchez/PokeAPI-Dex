@@ -11,8 +11,8 @@ class PokemonController extends Controller
         $api = new PokeApi;
 
         // Get Pokémon data
-        $pokemon = json_decode($api->pokemon($req->pokemon), true);
-        $pokemonSpecies = json_decode($api->pokemonSpecies($req->pokemon), true);
+        $pokemon = json_decode($api->pokemon($req->pokemonName), true);
+        $pokemonSpecies = json_decode($api->pokemonSpecies($req->pokemonName), true);
 
         return view("pokemon", [
             "pokemon" => $pokemon,
