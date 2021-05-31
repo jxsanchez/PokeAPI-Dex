@@ -19,28 +19,29 @@ class HomeController extends Controller
             // Get list of Pokémon from current generation.
             $data = json_decode($api->gameGeneration($i), true);
 
-            // Hold list of Poké
+            // List to be sorted by Pokémon number
             $tempList = array();
 
             for($j = 0; $j < count($data["pokemon_species"]); $j++) {
+                // Get url
                 $pokemonUrl = $data["pokemon_species"][$j]["url"];
 
+                // Explode url to separate Pokémon number
                 $urlArr = explode("/", $pokemonUrl);
 
+                // Store Pokémon species array with Pokémon number as key.
                 $tempList[$urlArr[6]] = $data["pokemon_species"][$j];
 
+                // Sort all Pokémon in generation
                 ksort($tempList);
             }
 
+            // Add sorted list of Pokémon to main array
             array_push($pokeLists, $tempList);
         }
 
         return view("home", [
             "pokeLists" => $pokeLists
         ]);
-    }
-
-    function compareUrl($a, $b) {
-        return strcmp($a["url"], $b["url"]);
     }
 }
