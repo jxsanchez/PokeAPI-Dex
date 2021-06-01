@@ -14,9 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 /* GET REQUESTS */
-Route::get("/", "HomeController@index");
 Route::get("/login", "LoginController@showLogin");
+Route::get("/logout", function () {
+    Auth::logout();
+
+    return redirect("/");
+});
+
+Route::get("/", "HomeController@index");
 Route::get("/pokemon/{pokemonName}", "PokemonController@showPokemon");
 
 /* POST REQUESTS */
 Route::post("/pokemon", "PokemonController@showPokemon");
+Route::post("/team/add", "TeamController@add");
+Route::post("/team/remove", "TeamController@remove");
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

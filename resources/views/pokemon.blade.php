@@ -1,7 +1,7 @@
 @extends("master")
 
 <!-- Set title of page (don't need double set of {} because this isn't an echo) -->
-@section("title", "{$pokemon["name"]} | PokéAPI Team Builder ")
+@section("title", "#".$pokemonSpecies["pokedex_numbers"][0]["entry_number"]." ".ucfirst($pokemon["name"])." | PokéAPI Team Builder ")
 
 @section("nav")
     @include("nav")
@@ -48,9 +48,37 @@
         
                 <p class="poke-desc">{{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}</p>
 
-                <form action="">
-                    <button class="btn btn-success">+ Add to Team</button>
-                </form>
+                @if(Auth::check())
+                    @if($team->pokemonCount < 6)
+                        @if(!str_contains($team->team, $pokemon["name"]))
+                            <form action="/team/add" method="POST">
+                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                                
+                                {{csrf_field() }}
+                                
+                                <button type="submit" class="btn btn-success">+ Add to Team</button>
+                            </form>
+                        @else
+                            <form action="/team/remove" method="POST">
+                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                                
+                                {{csrf_field() }}
+                                
+                                <button type="submit" class="btn btn-warning">Remove from Team</button>
+                            </form>   
+                        @endif
+                    @else
+                        @if(str_contains($team->team, $pokemon["name"]))
+                            <form action="/team/remove" method="POST">
+                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                                
+                                {{csrf_field() }}
+                                
+                                <button type="submit" class="btn btn-warning">Remove from Team</button>
+                            </form>  
+                        @endif
+                    @endif
+                @endif
         
                 <a class="btn nav-btn" href="/"><i class="fa fa-angle-left"></i> back</a>
             </div>

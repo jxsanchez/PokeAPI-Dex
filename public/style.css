@@ -139,16 +139,8 @@ a:visited {
     right: 0;
 }
 
-.list-container {
-    padding: 30px 0;
-}
-
-.bootstrap-select.btn-group .btn .caret {
-    left: 12px;
-}
-
-.bootstrap-select.btn-group .btn .filter-option {
-    text-align: right;
+.team-container a {
+    margin: 0 10px;
 }
 
 /************************* POKEMON.BLADE.PHP *************************/

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use PokePHP\PokeApi;
+use App\Models\PokemonTeam;
 
 class HomeController extends Controller
 {
@@ -39,9 +42,12 @@ class HomeController extends Controller
             // Add sorted list of Pokémon to main array
             array_push($pokeLists, $tempList);
         }
+        
+        $team = PokemonTeam::where("id", Auth::id())->first();
 
         return view("home", [
-            "pokeLists" => $pokeLists
+            "pokeLists" => $pokeLists,
+            "team" => $team
         ]);
     }
 }

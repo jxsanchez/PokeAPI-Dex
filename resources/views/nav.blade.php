@@ -12,9 +12,16 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
 
-            @if(!str_contains(url()->current(), "login"))
+            @if(Auth::check())
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+                </li>
+            @else
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register<span class="sr-only">(current)</span></a>
                 </li>
             @endif
         </ul>
