@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 /* GET REQUESTS */
 Route::get("/", "HomeController@index");
+Route::get("/login", "LoginController@showLogin");
 Route::get("/pokemon/{pokemonName}", "PokemonController@showPokemon");
 
 /* POST REQUESTS */

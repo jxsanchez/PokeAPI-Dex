@@ -11,6 +11,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
+
+            @if(!str_contains(url()->current(), "login"))
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+                </li>
+            @endif
         </ul>
     </div>
 </nav>

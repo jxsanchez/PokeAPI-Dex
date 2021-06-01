@@ -1,7 +1,7 @@
 @extends("master")
 
 <!-- Set title of page (don't need double set of {} because this isn't an echo) -->
-@section("title", "{$pokemon["name"]} | PokéAPI Dex ")
+@section("title", "{$pokemon["name"]} | PokéAPI Team Builder ")
 
 @section("nav")
     @include("nav")
@@ -47,6 +47,10 @@
                 </div>
         
                 <p class="poke-desc">{{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}</p>
+
+                <form action="">
+                    <button class="btn btn-success">+ Add to Team</button>
+                </form>
         
                 <a class="btn nav-btn" href="/"><i class="fa fa-angle-left"></i> back</a>
             </div>

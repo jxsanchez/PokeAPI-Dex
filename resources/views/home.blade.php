@@ -1,7 +1,7 @@
 @extends("master")
 
 <!-- Set title of page -->
-@section("title", "Home | PokéAPI Dex")
+@section("title", "Home | PokéAPI Team Builder")
 
 @section("nav")
     @include("nav")
@@ -13,8 +13,8 @@
     $currentNum = 1; // Use to display Pokémon number next to name in select
 @endphp
 <div class="container home-container d-flex flex-column align-items-center justify-content-center">
-    <h1>PokéAPI Dex</h1>
-    <h5>Learn more about your favorite Pokémon!</h5>
+    <h1>PokéAPI Team Builder</h1>
+    <h5>Build a team of your favorite Pokémon!</h5>
 
     <div class="list-container container">
         <div class="row">
