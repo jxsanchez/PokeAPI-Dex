@@ -23,6 +23,7 @@ Route::get("/logout", function () {
 
 Route::get("/", "HomeController@index");
 Route::get("/pokemon/{pokemonName}", "PokemonController@showPokemon");
+Route::get("/teams", "TeamController@getAllTeams");
 
 /* POST REQUESTS */
 Route::post("/pokemon", "PokemonController@showPokemon");

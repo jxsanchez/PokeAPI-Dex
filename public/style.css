@@ -147,6 +147,12 @@ a:visited {
     height: 80px;
 }
 
+.remove-pokemon-btn {
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 1px 10px;
+}
+
 /************************* POKEMON.BLADE.PHP *************************/
 .poke-img {
     width: 100%;

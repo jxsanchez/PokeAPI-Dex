@@ -12,6 +12,10 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/teams">Teams <span class="sr-only">(current)</span></a>
+            </li>
+
             @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>

@@ -66,14 +66,6 @@
                                 
                                 <button type="submit" class="btn btn-success">+ Add to Team</button>
                             </form>
-                        @else
-                            <form action="/team/remove" method="POST">
-                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
-                                
-                                {{csrf_field() }}
-                                
-                                <button type="submit" class="btn btn-warning">Remove from Team</button>
-                            </form>   
                         @endif
                     @endif
                 @endif

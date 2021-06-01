@@ -30,8 +30,18 @@
             <div class="team-container d-flex justify-content-center">
                     @foreach($teamArr as $key=>$pokemon)
                     <div class="pokemon-info-container d-flex flex-column align-items-center">
-                        <img class="pokemon-icon" src="{{$teamIcons[$key]}}" alt="">
-                        <a href="/pokemon/{{$pokemon}}">{{ucfirst($pokemon)}}</a>
+                        <a href="/pokemon/{{$pokemon}}" class="d-flex flex-column align-items-center">
+                            <img class="pokemon-icon" src="{{$teamIcons[$key]}}" alt="">
+                            {{ucfirst($pokemon)}}
+                        </a>
+
+                        <form action="/team/remove" method="post">
+                            <input name="pokemonName" type="text" value="{{$pokemon}}" hidden>
+
+                            {{csrf_field() }}
+
+                            <button class="remove-pokemon-btn btn btn-danger" type="submit">x</button>
+                        </form>
                     </div>
                 @endforeach
             </div>

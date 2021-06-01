@@ -23,6 +23,14 @@ class TeamController extends Controller
         return redirect("/");
     }
 
+    public function getAllTeams() {
+        $allTeams = PokemonTeam::all();
+
+        return view("teams", [
+            "allTeams" => $allTeams
+        ]);
+    }
+
     public function add(Request $req) {
         // Current user's id
         $userId = Auth::id();
@@ -53,7 +61,7 @@ class TeamController extends Controller
             PokemonTeam::where("userId", $userId)->update(array(
                 "pokemonCount" => $updatedCount,
                 "team"=>$updatedTeam,
-                "updated_at"=>Carbon::today()));
+                "updated_at"=>Carbon::now()));
 
             return redirect("/");
         } else {
@@ -85,7 +93,7 @@ class TeamController extends Controller
        PokemonTeam::where("userId", $userId)->update(array(
            "pokemonCount" => $updatedCount,
            "team"=>$updatedTeam,
-           "updated_at"=>Carbon::today()));
+           "updated_at"=>Carbon::now()));
 
        return redirect("/"); 
     }
