@@ -43,11 +43,46 @@ class HomeController extends Controller
             array_push($pokeLists, $tempList);
         }
         
-        $team = PokemonTeam::where("id", Auth::id())->first();
+        if(Auth::check()) {
+            // Get user's team
+            if($team = PokemonTeam::where("userId", Auth::id())->first()) {
+                // Store icon urls
+                $teamIcons = array();
 
-        return view("home", [
-            "pokeLists" => $pokeLists,
-            "team" => $team
-        ]);
+                if($team->pokemonCount > 0) {
+                    $tempArr = explode("|", $team->team);
+
+                    foreach($tempArr as $pokemonName) {
+                        $pokemon = json_decode($api->pokemon($pokemonName), true);
+
+                        // Check if Pokémon has gen 8 icon, else add gen 7 icon
+                        if($pokemon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"] != null) {
+                            array_push($teamIcons, $pokemon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]);
+                        } else {
+                            array_push($teamIcons, $pokemon["sprites"]["versions"]["generation-vii"]["icons"]["front_default"]);
+                        }
+                    }
+                }
+
+                return view("home", [
+                    "pokeLists" => $pokeLists,
+                    "team" => $team,
+                    "teamIcons" => $teamIcons
+                ]);
+            } else {
+                return view("home", [
+                    "pokeLists" => $pokeLists,
+                    "team" => (object)["pokemonCount" => "0"],
+                    "teamIcons" => []
+                ]);
+            }
+        } else {
+
+            return view("home", [
+                "pokeLists" => $pokeLists,
+                "team" => (object)["pokemonCount" => "0"],
+                "teamIcons" => []
+            ]);
+        }
     }
 }

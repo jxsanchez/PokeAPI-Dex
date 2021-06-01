@@ -49,7 +49,15 @@
                 <p class="poke-desc">{{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}</p>
 
                 @if(Auth::check())
-                    @if($team->pokemonCount < 6)
+                    @if($team->pokemonCount < 1)
+                        <form action="/team/add" method="POST">
+                            <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                            
+                            {{csrf_field() }}
+                            
+                            <button type="submit" class="btn btn-success">+ Add to Team</button>
+                        </form>
+                    @elseif($team->pokemonCount >=1 &&  $team->pokemonCount < 6)
                         @if(!str_contains($team->team, $pokemon["name"]))
                             <form action="/team/add" method="POST">
                                 <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
@@ -66,16 +74,6 @@
                                 
                                 <button type="submit" class="btn btn-warning">Remove from Team</button>
                             </form>   
-                        @endif
-                    @else
-                        @if(str_contains($team->team, $pokemon["name"]))
-                            <form action="/team/remove" method="POST">
-                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
-                                
-                                {{csrf_field() }}
-                                
-                                <button type="submit" class="btn btn-warning">Remove from Team</button>
-                            </form>  
                         @endif
                     @endif
                 @endif

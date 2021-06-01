@@ -12,22 +12,34 @@
 @php
     $currentNum = 1; // Use to display Pokémon number next to name in select
 
-    if($team) {
-        $teamArr = explode("|", $team->team);
+    // Create array of Pokémon in team if user is logged in
+    if(Auth::check()) {
+        if($team->pokemonCount > 1) {
+            $teamArr = explode("|", $team->team);
+        } else if($team->pokemonCount == 1) {
+            $teamArr = [$team->team];
+        }
     }
 @endphp
 <div class="container home-container d-flex flex-column align-items-center justify-content-center">
     <h1>PokéAPI Team Builder</h1>
     <h5>Build a team of your favorite Pokémon!</h5>
 
-    @if($team)
-        <div class="team-container d-flex justify-content-center">
-            @foreach($teamArr as $pokemon)
-                <a href="/pokemon/{{$pokemon}}">{{$pokemon}}</a>
-            @endforeach
-        </div>
+    @if(Auth::check())
+        @if($team->pokemonCount > 0)
+            <div class="team-container d-flex justify-content-center">
+                    @foreach($teamArr as $key=>$pokemon)
+                    <div class="pokemon-info-container d-flex flex-column align-items-center">
+                        <img class="pokemon-icon" src="{{$teamIcons[$key]}}" alt="">
+                        <a href="/pokemon/{{$pokemon}}">{{ucfirst($pokemon)}}</a>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            Select a Pokémon from any generation to start building your team.
+        @endif
     @else
-        Login to create a  team!
+        Login or register to create a  team.
     @endif
 
     <div class="list-container container">

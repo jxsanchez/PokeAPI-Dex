@@ -143,6 +143,10 @@ a:visited {
     margin: 0 10px;
 }
 
+.pokemon-icon {
+    height: 80px;
+}
+
 /************************* POKEMON.BLADE.PHP *************************/
 .poke-img {
     width: 100%;
