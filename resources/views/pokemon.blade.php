@@ -20,6 +20,7 @@
 
     <div class="container d-flex align-items-center">
         <div class="row">
+            <!-- Pokémon Image -->
             <div class="col-md-6">
                 <img class="poke-img"
                 src="{{$pokemon["sprites"]["other"]["official-artwork"]["front_default"]}}" 
@@ -69,6 +70,23 @@
                         @endif
                     @endif
                 @endif
+
+                <!-- Evolution Chain -->
+                <div class="">
+                    Evolution Chain
+                    @foreach($evoChainArr as $stage)
+                    <div class="row d-flex align-items-center justify-content-center">
+                        @foreach($stage as $currMon)
+                            <div class="col-md-6 d-flex flex-row align-items-end">
+                                <img src="{{$currMon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]}}" alt="">
+                                <a class="align-self-end" href="/pokemon/{{$currMon["species"]["name"]}}">
+                                    {{ucfirst($currMon["species"]["name"])}}
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endforeach
+                </div>
         
                 <a class="btn nav-btn" href="/"><i class="fa fa-angle-left"></i> back</a>
             </div>

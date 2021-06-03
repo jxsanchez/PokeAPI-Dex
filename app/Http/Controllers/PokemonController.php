@@ -19,39 +19,62 @@ class PokemonController extends Controller
 
         // Explode evolution chain URL to get id used to call evolution chain route
         $evoChainId = explode("/", $pokemonSpecies["evolution_chain"]["url"])[6];
-        $evoChain = json_decode($api->evolutionChain($evoChainId));
+        $evoChain = json_decode($api->evolutionChain($evoChainId), true);
+        $evoChainArr = array();
 
         // Get first stage
-        if($evoChain->chain->species->name != null) {
-            echo $evoChain->chain->species->name;
+        if(isset($evoChain["chain"]["species"]["name"])) {
+            $firstStageName = $evoChain["chain"]["species"]["name"];
+            $currentPokeObj = json_decode($api->pokemon($firstStageName), true);
+            
+            array_push($evoChainArr, array($currentPokeObj));
         }
 
-        // Get second stage evolutions
-        if(isset($evoChain->chain->evolves_to)) {
+        // Get second stage evolutions if there are any
+        if(isset($evoChain["chain"]["evolves_to"])) {
             $i = 0;
 
-            while($i < count($evoChain->chain->evolves_to)) {
-                echo $evoChain->chain->evolves_to[$i]->species->name;
+            // Array to hold second stage evolutions
+            $secondStageArr = array();
+
+            // Populate second stage array
+            while($i < count($evoChain["chain"]["evolves_to"])) {
+                $secondStageName = $evoChain["chain"]["evolves_to"][$i]["species"]["name"];
+                $currentPokeObj = json_decode($api->pokemon($secondStageName), true);
+
+                array_push($secondStageArr, $currentPokeObj);
 
                 $i++;
             }
             
+            // Add array of second stage evolutions to main evolutions array
+            array_push($evoChainArr, $secondStageArr);
         }
 
-        // Get third stage evolutions
-        if(isset($evoChain->chain->evolves_to[0]->evolves_to)) {
+        // Get third stage evolutions if there are any
+        if(isset($evoChain["chain"]["evolves_to"][0]["evolves_to"])) {
             $i = 0;
+
+            // Array to hold third stage evolutions
+            $thirdStageArr = array();
             
-            while($i < count($evoChain->chain->evolves_to)) {
+            while($i < count($evoChain["chain"]["evolves_to"])) {
                 $j = 0;
-                while($j < count($evoChain->chain->evolves_to[0]->evolves_to)) {
-                    echo $evoChain->chain->evolves_to[$i]->evolves_to[$j]->species->name;
+
+                while($j < count($evoChain["chain"]["evolves_to"][0]["evolves_to"])) {
+                    $thirdStageName = $evoChain["chain"]["evolves_to"][$i]["evolves_to"][$j]["species"]["name"];
+                    $currentPokeObj = json_decode($api->pokemon($thirdStageName), true);
+
+                    array_push($thirdStageArr, $currentPokeObj);
 
                     $j++;
                 }
 
                 $i++;
-            }            
+            }   
+            
+            // Add array of third stage evolutions to main evolutions array
+            array_push($evoChainArr, $thirdStageArr);
         }
 
         // If authenticated and has a team, use team from database
@@ -60,7 +83,7 @@ class PokemonController extends Controller
                 "pokemon" => $pokemon,
                 "pokemonSpecies" => $pokemonSpecies,
                 "team" => $team,
-                "evoChain" => $evoChain
+                "evoChainArr" => $evoChainArr
             ]);
         
         }
@@ -70,7 +93,7 @@ class PokemonController extends Controller
             "pokemon" => $pokemon,
             "pokemonSpecies" => $pokemonSpecies,
             "team" => (object)["pokemonCount" => "0"],
-            "evoChain" => $evoChain
+            "evoChainArr" => $evoChainArr
         ]);
     }
 }
