@@ -18,7 +18,7 @@
         }
     @endphp
 
-    <div class="container d-flex align-items-center">
+    <div class="pokemon-info-container container d-flex align-items-center">
         <div class="row">
             <!-- Pokémon Image -->
             <div class="col-md-6">
@@ -30,32 +30,34 @@
             <div class="col-md-6">
                 <!-- Pokémon Name and Add Button -->
                 <div class="poke-name-container d-flex align-items-center">
-                    <h1 class="poke-name">#{{$pokemonSpecies["pokedex_numbers"][0]["entry_number"]}} {{ucfirst($pokemon["name"])}}</h1>
+                    <h1 class="poke-name">
+                        #{{$pokemonSpecies["pokedex_numbers"][0]["entry_number"]}} {{ucfirst($pokemon["name"])}}
+                    </h1>
 
-                <!-- Display add logged in users -->
-                @if(Auth::check())
-                <!-- Display add button if no Pokémon on team -->
-                @if($team->pokemonCount < 1)
-                    <form action="/team/add" method="POST">
-                        <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
-                        
-                        {{csrf_field() }}
-                        
-                        <button type="submit" class="btn btn-success">+ Add to Team</button>
-                    </form>
-                <!-- Display add button if team is not full and Pokémon is not on team already -->
-                @elseif($team->pokemonCount >=1 &&  $team->pokemonCount < 6)
-                    @if(!str_contains($team->team, $pokemon["name"]))
-                        <form action="/team/add" method="POST">
-                            <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
-                            
-                            {{csrf_field() }}
-                            
-                            <button type="submit" class="btn btn-success">+ Add to Team</button>
-                        </form>
+                    <!-- Display add logged in users -->
+                    @if(Auth::check())
+                    <!-- Display add button if no Pokémon on team -->
+                        @if($team->pokemonCount < 1)
+                            <form class="add-poke-form" action="/team/add" method="POST">
+                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                                
+                                {{csrf_field() }}
+                                
+                                <button type="submit" class="add-poke-btn btn btn-success">+ Add to Team</button>
+                            </form>
+                        <!-- Display add button if team is not full and Pokémon is not on team already -->
+                        @elseif($team->pokemonCount >=1 &&  $team->pokemonCount < 6)
+                            @if(!str_contains($team->team, $pokemon["name"]))
+                                <form class="add-poke-form" action="/team/add" method="POST">
+                                    <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                                    
+                                    {{csrf_field() }}
+                                    
+                                    <button type="submit" class="add-poke-btn btn btn-success">+ Add</button>
+                                </form>
+                            @endif
+                        @endif
                     @endif
-                @endif
-            @endif
                 </div>
                 
     
@@ -76,23 +78,30 @@
                 <p class="poke-desc">{{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}</p>
 
                 <!-- Evolution Line -->
-                <div class="">
-                    Evolution Line
-                    <div class="row">
-                        @foreach($evoChainArr as $stage)
-                            <div class="evo-line-col col-md">
+                <div class="evo-line-container">
+                    <div class="evo-line-row row d-flex align-items-center">
+                        <!-- Display evolution line with each stage in its own column -->
+                        @foreach($evoChainArr as $key=>$stage)
+                            <div class="evo-line-col col-md d-flex flex-column justify-content-center">
                                 @foreach($stage as $currMon)
-                                    <a class="d-flex flex-column align-items-center justify-content-center" href="/pokemon/{{$currMon["species"]["name"]}}">
-                                        <img class="pokemon-icon" src="{{$currMon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]}}" alt="">
-                                        {{ucfirst($currMon["species"]["name"])}}
-                                    </a>
+                                    <div class="stage-container d-flex align-items-center">
+                                        <!-- Display arrow from previous evolution to current Pokémon-->
+                                        @if($key != 0) 
+                                            <i class="next-evo-arrow-right fa fa-arrow-right"></i>
+                                        @endif
+                                        <a  class="evo-line-stage d-flex flex-column align-items-center justify-content-center" 
+                                            href="/pokemon/{{$currMon["species"]["name"]}}">
+                                            <img class="pokemon-icon" src="{{$currMon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]}}" alt="">
+                                            {{ucfirst($currMon["species"]["name"])}}
+                                        </a>
+                                    </div>
                                 @endforeach
                             </div>
                         @endforeach
                     </div>
                 </div>
         
-                <a class="btn nav-btn" href="/"><i class="fa fa-angle-left"></i> back</a>
+                <a class="back-btn btn nav-btn" href="/"><i class="fa fa-angle-left"></i> back</a>
             </div>
         </div>
     </div>

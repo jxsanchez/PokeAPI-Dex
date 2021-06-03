@@ -154,11 +154,25 @@ a:visited {
 }
 
 /************************* POKEMON.BLADE.PHP *************************/
+.pokemon-info-container {
+    position: relative;
+    padding-bottom: 50px;
+}
+
 .poke-img {
     width: 100%;
 }
 
 .poke-name-container {
+    margin-bottom: 10px;
+}
+
+.add-poke-form {
+    margin-left: 15px;
+}
+
+.add-poke-btn {
+    padding: 7px 12px;
 }
 
 .poke-name {
@@ -173,8 +187,31 @@ a:visited {
 .poke-desc {
 }
 
+.evo-line-container {
+    width: 100%;
+}
+
+.evo-line-row {
+    width: 100%;
+    margin: -40px 0 30px 0;
+}
+
 .evo-line-col {
     height: 100%;
+}
+
+.stage-container {
+    position: relative;
+}
+
+.next-evo-arrow-right {
+    font-size: 2rem;
+    position: absolute;
+    left: -35%;
+    top: 50%;
+}
+
+.back-btn {
 }
 
 /************************* FOOTER.BLADE.PHP *************************/
