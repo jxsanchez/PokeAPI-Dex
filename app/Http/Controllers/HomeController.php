@@ -18,6 +18,7 @@ class HomeController extends Controller
         // Empty array that will hold arrays of Pokémon from each generation
         $pokeLists = array();
 
+        // Get sorted list of Pokémon in each generation
         for($i = 1; $i <= 8; $i++) {
             // Get list of Pokémon from current generation.
             $data = json_decode($api->gameGeneration($i), true);
@@ -43,41 +44,34 @@ class HomeController extends Controller
             array_push($pokeLists, $tempList);
         }
         
-        if(Auth::check()) {
-            // Get user's team
-            if($team = PokemonTeam::where("userId", Auth::id())->first()) {
-                // Store icon urls
-                $teamIcons = array();
+        // Check if user logged in and if they have a team
+        if(Auth::check() && $team = PokemonTeam::where("userId", Auth::id())->first()) {
+            // Store icon urls
+            $teamIcons = array();
 
-                if($team->pokemonCount > 0) {
-                    $tempArr = explode("|", $team->team);
+            // Set icons for each Pokémon in team
+            if($team->pokemonCount > 0) {
+                $tempArr = explode("|", $team->team);
 
-                    foreach($tempArr as $pokemonName) {
-                        $pokemon = json_decode($api->pokemon($pokemonName), true);
+                foreach($tempArr as $pokemonName) {
+                    $pokemon = json_decode($api->pokemon($pokemonName), true);
 
-                        // Check if Pokémon has gen 8 icon, else add gen 7 icon
-                        if($pokemon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"] != null) {
-                            array_push($teamIcons, $pokemon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]);
-                        } else {
-                            array_push($teamIcons, $pokemon["sprites"]["versions"]["generation-vii"]["icons"]["front_default"]);
-                        }
+                    // Check if Pokémon has gen 8 icon, else add gen 7 icon
+                    if($pokemon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"] != null) {
+                        array_push($teamIcons, $pokemon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]);
+                    } else {
+                        array_push($teamIcons, $pokemon["sprites"]["versions"]["generation-vii"]["icons"]["front_default"]);
                     }
                 }
-
-                return view("home", [
-                    "pokeLists" => $pokeLists,
-                    "team" => $team,
-                    "teamIcons" => $teamIcons
-                ]);
-            } else {
-                return view("home", [
-                    "pokeLists" => $pokeLists,
-                    "team" => (object)["pokemonCount" => "0"],
-                    "teamIcons" => []
-                ]);
             }
-        } else {
 
+            return view("home", [
+                "pokeLists" => $pokeLists,
+                "team" => $team,
+                "teamIcons" => $teamIcons
+            ]);
+        } else {
+            // If user is not logged in or does not have a team, return object with no team and empty teamIcons array
             return view("home", [
                 "pokeLists" => $pokeLists,
                 "team" => (object)["pokemonCount" => "0"],

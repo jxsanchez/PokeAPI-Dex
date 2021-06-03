@@ -16,9 +16,6 @@
         while($pokemonSpecies["flavor_text_entries"][$i]["language"]["name"] != "en") {
             $i++;
         }
-
-        // Get second to last character, the generation number, from the API endpoint
-        $genNum = substr($pokemonSpecies["generation"]["url"], -2, 1);
     @endphp
 
     <div class="container d-flex align-items-center">
@@ -48,7 +45,9 @@
         
                 <p class="poke-desc">{{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}</p>
 
+                <!-- Display add logged in users -->
                 @if(Auth::check())
+                    <!-- Display add button if no Pokémon on team -->
                     @if($team->pokemonCount < 1)
                         <form action="/team/add" method="POST">
                             <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
@@ -57,6 +56,7 @@
                             
                             <button type="submit" class="btn btn-success">+ Add to Team</button>
                         </form>
+                    <!-- Display add button if team is not full and Pokémon is not on team already -->
                     @elseif($team->pokemonCount >=1 &&  $team->pokemonCount < 6)
                         @if(!str_contains($team->team, $pokemon["name"]))
                             <form action="/team/add" method="POST">

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class CreatePokemonTeamsTable extends Migration
 {
@@ -17,8 +18,9 @@ class CreatePokemonTeamsTable extends Migration
             $table->id();
             $table->string("userId");
             $table->string("team");
-            $table->smallInteger("pokemonCount");
-            $table->timestamps();
+            $table->smallInteger("pokemonCount")->default(0);
+            $table->integer("likeCount")->default(0);
+            $table->timestamps()->default(Carbon::now());
         });
     }
 

@@ -1,6 +1,6 @@
 @section("nav")
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">PokéAPI Dex</a>
+    <a class="navbar-brand" href="#">PokéAPI Team Builder</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

@@ -12,8 +12,13 @@
         <div class="container">
             <p>{{$team->team}}</p>
 
-            <p>Created by: {{$team->userId}}</p>
+            <p>{{$team->likeCount}} Likes</p>
             <p>{{$team->updated_at->diffForHumans()}}</p>
+            
+            @if(Auth::check() && $team->userId != Auth::id())
+                <p>Created by: {{$team->userId}}</p>
+                <i class="fa fa-thumbs-up"></i>
+            @endif
         </div>
     @endforeach
 @endsection

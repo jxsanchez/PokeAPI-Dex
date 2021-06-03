@@ -22,8 +22,7 @@
     }
 @endphp
 <div class="container home-container d-flex flex-column align-items-center justify-content-center">
-    <h1>PokéAPI Team Builder</h1>
-    <h5>Build a team of your favorite Pokémon!</h5>
+    <img class="main-logo" src="img/main-logo.png" alt="PokéAPI Team Builder Logo">
 
     @if(Auth::check())
         @if($team->pokemonCount > 0)
@@ -52,7 +51,7 @@
         Login or register to create a  team.
     @endif
 
-    <div class="list-container container">
+    <div class="gen-list-container container">
         <div class="row">
             @for($i = 0; $i < 4; $i++)
                 <div class="col-sm">

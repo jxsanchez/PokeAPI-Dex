@@ -130,17 +130,13 @@ a:visited {
 }
 
 /************************* HOME.BLADE.PHP *************************/
-.home-container {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+
+.main-logo {
+    height: 200px;
 }
 
 .team-container a {
-    margin: 0 10px;
+    margin: -35px 0 10px;
 }
 
 .pokemon-icon {
@@ -151,6 +147,10 @@ a:visited {
     border-radius: 5px;
     margin-top: 5px;
     padding: 1px 10px;
+}
+
+.gen-list-container {
+    padding: 30px 0;
 }
 
 /************************* POKEMON.BLADE.PHP *************************/
