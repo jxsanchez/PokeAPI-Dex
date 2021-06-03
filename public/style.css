@@ -158,8 +158,10 @@ a:visited {
     width: 100%;
 }
 
+.poke-name-container {
+}
+
 .poke-name {
-    margin-bottom: 15px;
 }
 
 .type-container {
@@ -169,6 +171,10 @@ a:visited {
 }
 
 .poke-desc {
+}
+
+.evo-line-col {
+    height: 100%;
 }
 
 /************************* FOOTER.BLADE.PHP *************************/

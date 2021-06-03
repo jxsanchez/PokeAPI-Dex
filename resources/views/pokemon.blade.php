@@ -28,7 +28,36 @@
             </div>
 
             <div class="col-md-6">
-                <h1 class="poke-name">#{{$pokemonSpecies["pokedex_numbers"][0]["entry_number"]}} {{ucfirst($pokemon["name"])}}</h1>
+                <!-- Pokémon Name and Add Button -->
+                <div class="poke-name-container d-flex align-items-center">
+                    <h1 class="poke-name">#{{$pokemonSpecies["pokedex_numbers"][0]["entry_number"]}} {{ucfirst($pokemon["name"])}}</h1>
+
+                <!-- Display add logged in users -->
+                @if(Auth::check())
+                <!-- Display add button if no Pokémon on team -->
+                @if($team->pokemonCount < 1)
+                    <form action="/team/add" method="POST">
+                        <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                        
+                        {{csrf_field() }}
+                        
+                        <button type="submit" class="btn btn-success">+ Add to Team</button>
+                    </form>
+                <!-- Display add button if team is not full and Pokémon is not on team already -->
+                @elseif($team->pokemonCount >=1 &&  $team->pokemonCount < 6)
+                    @if(!str_contains($team->team, $pokemon["name"]))
+                        <form action="/team/add" method="POST">
+                            <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
+                            
+                            {{csrf_field() }}
+                            
+                            <button type="submit" class="btn btn-success">+ Add to Team</button>
+                        </form>
+                    @endif
+                @endif
+            @endif
+                </div>
+                
     
                 <div class="type-container">
                     <!-- Use Pokémon type to set class name -->
@@ -46,46 +75,21 @@
         
                 <p class="poke-desc">{{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}</p>
 
-                <!-- Display add logged in users -->
-                @if(Auth::check())
-                    <!-- Display add button if no Pokémon on team -->
-                    @if($team->pokemonCount < 1)
-                        <form action="/team/add" method="POST">
-                            <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
-                            
-                            {{csrf_field() }}
-                            
-                            <button type="submit" class="btn btn-success">+ Add to Team</button>
-                        </form>
-                    <!-- Display add button if team is not full and Pokémon is not on team already -->
-                    @elseif($team->pokemonCount >=1 &&  $team->pokemonCount < 6)
-                        @if(!str_contains($team->team, $pokemon["name"]))
-                            <form action="/team/add" method="POST">
-                                <input name="pokemonName" type="text" value="{{$pokemon["name"]}}" hidden>
-                                
-                                {{csrf_field() }}
-                                
-                                <button type="submit" class="btn btn-success">+ Add to Team</button>
-                            </form>
-                        @endif
-                    @endif
-                @endif
-
-                <!-- Evolution Chain -->
+                <!-- Evolution Line -->
                 <div class="">
-                    Evolution Chain
-                    @foreach($evoChainArr as $stage)
-                    <div class="row d-flex align-items-center justify-content-center">
-                        @foreach($stage as $currMon)
-                            <div class="col-md-6 d-flex flex-row align-items-end">
-                                <img src="{{$currMon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]}}" alt="">
-                                <a class="align-self-end" href="/pokemon/{{$currMon["species"]["name"]}}">
-                                    {{ucfirst($currMon["species"]["name"])}}
-                                </a>
+                    Evolution Line
+                    <div class="row">
+                        @foreach($evoChainArr as $stage)
+                            <div class="evo-line-col col-md">
+                                @foreach($stage as $currMon)
+                                    <a class="d-flex flex-column align-items-center justify-content-center" href="/pokemon/{{$currMon["species"]["name"]}}">
+                                        <img class="pokemon-icon" src="{{$currMon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]}}" alt="">
+                                        {{ucfirst($currMon["species"]["name"])}}
+                                    </a>
+                                @endforeach
                             </div>
                         @endforeach
                     </div>
-                    @endforeach
                 </div>
         
                 <a class="btn nav-btn" href="/"><i class="fa fa-angle-left"></i> back</a>
