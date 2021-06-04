@@ -26,12 +26,12 @@
 
     @if(Auth::check())
         @if($team->pokemonCount > 0)
-            <div class="team-container d-flex justify-content-center">
+            <div class="row team-container d-flex justify-content-center">
                     @foreach($teamArr as $key=>$pokemon)
-                    <div class="pokemon-info-container d-flex flex-column align-items-center">
+                    <div class="col-sm-2 pokemon-icon-container d-flex flex-column align-items-center">
                         <a href="/pokemon/{{$pokemon}}" class="d-flex flex-column align-items-center">
                             <img class="pokemon-icon" src="{{$teamIcons[$key]}}" alt="">
-                            {{ucfirst($pokemon)}}
+                            <p class="pokemon-name">{{ucfirst($pokemon)}}</p>
                         </a>
 
                         <form action="/team/remove" method="post">
@@ -45,10 +45,16 @@
                 @endforeach
             </div>
         @else
-            Select a Pokémon from any generation to start building your team.
+            <p class="home-msg">
+                Select a Pokémon from any generation to start building your team.
+            </p>
         @endif
     @else
-        Login or register to create a  team.
+        <p class="home-msg">
+            <a href="/login" class="body-link">Login</a> or 
+            <a href="/register" class="body-link">register</a> 
+            to create a  team.
+        </p>
     @endif
 
     <div class="gen-list-container container">
@@ -58,7 +64,7 @@
                     <div class="form-group">
                         <form action="/pokemon" method="POST">                
                             <!-- Create <select> options using list of Pokémon -->
-                            <select name="pokemonName" class="form-control" id="pokemon-select" onchange="this.form.submit()">
+                            <select name="pokemonName" class="pokemon-select form-control" onchange="this.form.submit()">
                                 <option value="none" selected disabled hidden>Generation {{$i + 1}}</option>
                                 @foreach($pokeLists[$i] as $pokemon)
                                     <option value="{{$pokemon["name"]}}">{{$currentNum++}} - {{ucfirst($pokemon["name"])}}</option>
@@ -78,7 +84,7 @@
                     <div class="form-group">
                         <form action="/pokemon" method="POST">                
                             <!-- Create <select> options using list of Pokémon -->
-                            <select class="form-control" name="pokemonName" id="pokemon-select" onchange="this.form.submit()">
+                            <select class="pokemon-select form-control" name="pokemonName" onchange="this.form.submit()">
                                 <option value="none" selected disabled hidden>Generation {{$i + 1}}</option>
                                 @foreach($pokeLists[$i] as $pokemon)
                                     <option value="{{$pokemon["name"]}}">{{$currentNum++}} - {{ucfirst($pokemon["name"])}}</option>

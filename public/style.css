@@ -2,12 +2,17 @@
 .type-btn {
     border-radius: 5px;
     color: #fff;
+    font-size: 0.8rem;
     font-weight: bold;
     letter-spacing: 3px;
     margin-right: 10px;
-    padding: 10px 15px;
-    text-align: center;
+    padding: 10px 10px;
     text-transform: uppercase;
+}
+
+.type-name {
+    width: 100%;
+    text-align: center;
 }
 
 .normal {
@@ -85,6 +90,7 @@
 /************************* TAGS *************************/
 body {
     height: 100vh;
+    font-family: "Press Start 2P", cursive;
 }
 
 a,
@@ -99,6 +105,14 @@ a:visited {
     color: #fff;
 }
 
+.body-link {
+    color: #cc0000;
+}
+
+.body-link:hover {
+    color: #ff0000;
+}
+
 .fa {
     font-size: 1.3rem;
 }
@@ -107,32 +121,63 @@ a:visited {
     padding: 0 0 30px 0;
 }
 
+.title-underline {
+    margin: 5px 0 15px;
+}
+
 /************************* BOOTSTRAP *************************/
 .container {
-    /* background: #f3f3f3; */
+    /* background: #fafafa; */
     height: fit-content;
     padding: 50px;
 }
 
 /************************* NAV.BLADE.PHP *************************/
 .navbar {
-    background: #b3a125;
+    background: #3b4cca;
     padding: 20px;
 }
 
 .navbar a {
     color: #fafafa;
+    font-size: 0.8rem;
     transition: ease-in-out all 0.1s;
 }
 
 .navbar a:hover {
-    color: #ffde00;
+    color: #9da6e5;
+}
+
+.nav-item {
+    padding-right: 15px;
+}
+
+.navbar-toggler {
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 /************************* HOME.BLADE.PHP *************************/
-
 .main-logo {
     height: 200px;
+    margin-bottom: 15px;
+}
+
+.home-msg {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.team-container {
+    width: 100%;
+    margin-bottom: -70px;
 }
 
 .team-container a {
@@ -143,20 +188,31 @@ a:visited {
     height: 80px;
 }
 
+.pokemon-name {
+    margin-bottom: 0;
+    font-size: 0.6rem;
+}
+
 .remove-pokemon-btn {
     border-radius: 5px;
     margin-top: 5px;
-    padding: 1px 10px;
+    padding: 2px 7px;
+    font-size: 0.8rem;
 }
 
 .gen-list-container {
     padding: 30px 0;
 }
 
+.pokemon-select {
+    font-size: 0.9rem;
+}
+
 /************************* POKEMON.BLADE.PHP *************************/
 .pokemon-info-container {
     position: relative;
-    padding-bottom: 50px;
+    height: fit-content;
+    padding-bottom: 70px;
 }
 
 .poke-img {
@@ -164,18 +220,20 @@ a:visited {
 }
 
 .poke-name-container {
-    margin-bottom: 10px;
 }
 
 .add-poke-form {
-    margin-left: 15px;
+    margin: 0;
 }
 
 .add-poke-btn {
-    padding: 7px 12px;
+    font-size: 1.5rem;
+    padding: 0 10px;
+    border-radius: 5px;
 }
 
 .poke-name {
+    font-size: 1.5rem;
 }
 
 .type-container {
@@ -185,6 +243,22 @@ a:visited {
 }
 
 .poke-desc {
+    font-size: 0.8rem;
+    margin-bottom: 30px;
+}
+
+.accordion {
+    width: 100%;
+}
+
+.card {
+    border: none;
+}
+
+.card-header {
+    background: none;
+    text-align: center;
+    border: none;
 }
 
 .evo-line-container {
@@ -204,6 +278,14 @@ a:visited {
     position: relative;
 }
 
+.evo-line-stage {
+    font-size: 0.7rem;
+}
+
+.evo-chain-icon {
+    height: 60px;
+}
+
 .next-evo-arrow-right {
     font-size: 2rem;
     position: absolute;
@@ -211,18 +293,63 @@ a:visited {
     top: 50%;
 }
 
+.options-container {
+    position: absolute;
+    bottom: 0;
+    padding: 25px 0;
+    width: 100%;
+    margin-left: 0.5px;
+}
+
+.option-col {
+    padding: 15px 20px 5px 20px;
+}
+
+.options-text-col {
+    border-top: 10px solid #3b4cca;
+    border-left: 15px solid #3b4cca;
+    border-bottom: 10px solid #3b4cca;
+    color: #313131;
+    line-height: 2rem;
+}
+
+.options-col {
+    border: 10px solid #313131;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.option-btn {
+    background: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    outline: none;
+    margin-bottom: 15px;
+    color: #313131;
+}
+
+.option-btn:hover:before {
+    content: ">";
+    color: #a9a9a9;
+}
+
+.option-btn:hover {
+    color: #a9a9a9;
+}
+
 .back-btn {
 }
 
 /************************* FOOTER.BLADE.PHP *************************/
 .footer {
-    background: #3b4cca;
-    bottom: 0;
-    color: #fafafa;
+    background: #ffde00;
+    color: #191600;
     padding: 20px 0;
-    position: fixed;
     text-align: center;
     width: 100%;
+    bottom: 0;
+    position: fixed;
+    font-size: 0.6rem;
 }
 
 footer p {
@@ -230,10 +357,76 @@ footer p {
 }
 
 .footer a {
-    color: #ffde00;
+    color: #806f00;
     transition: ease-in-out all 0.1s;
 }
 
 .footer a:hover {
-    color: #b3a125;
+    color: #ccb200;
+}
+
+/************************* MEDIA QUERIES *************************/
+@media (max-width: 768px) {
+    .options-container {
+        position: initial;
+    }
+
+    /************************* HOME.BLADE.PHP *************************/
+    .home-container {
+        padding: 25px;
+    }
+
+    .main-logo {
+        width: 110%;
+        margin-bottom: 15px;
+        height: auto;
+    }
+
+    .team-container {
+        width: 100%;
+        margin-bottom: -30px;
+    }
+
+    .pokemon-icon-container {
+        padding: 0;
+        margin-bottom: 30px;
+        width: auto;
+    }
+
+    .pokemon-select {
+        font-size: 0.8rem;
+    }
+
+    /************************* POKEMON.BLADE.PHP *************************/
+    .pokemon-info-container {
+        padding: 0 30px;
+        margin-bottom: 30px;
+    }
+
+    .pokemon-name-container {
+        justify-content: center;
+    }
+
+    .poke-name {
+        font-size: 1.2rem;
+    }
+
+    .poke-desc {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+
+    .options-text-col {
+        border-top: 10px solid #3b4cca;
+        border-left: 10px solid #3b4cca;
+        border-right: 10px solid #3b4cca;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .options-col {
+        border-bottom: 10px solid #313131;
+        border-left: 10px solid #313131;
+        border-right: 10px solid #313131;
+        border-radius: 0px 0px 5px 5px;
+    }
 }
