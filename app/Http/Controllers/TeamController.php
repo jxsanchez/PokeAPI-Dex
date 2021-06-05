@@ -27,7 +27,7 @@ class TeamController extends Controller
     }
 
     public function getAllTeams() {
-        $dbTeams = PokemonTeam::all();
+        $dbTeams = PokemonTeam::all()->sortByDesc("updated_at");
 
         // print_r($dbTeams);
 

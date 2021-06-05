@@ -11,6 +11,7 @@
     @foreach($allTeams as $team)
         <div class="container team-info">
             <div class="row team-container d-flex justify-content-start">
+                <p>OT: {{$team->userName}}</p>
                 @foreach($team->team as $pokemon)
                     <div class="col-sm-2 pokemon-icon-container d-flex flex-column justify-content-center align-items-start">
                         <a href="/pokemon/{{$pokemon->name}}" class="d-flex flex-column justify-content-start">
