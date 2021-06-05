@@ -22,7 +22,7 @@
             </div>
 
             <div class="d-flex justify-content-start">
-                <p>{{$team->likeCount}} Likes +</p>
+                <p>{{$team->likeCount}} Likes</p>
                 <p>{{$team->updated_at}}</p>
             </div>
             
