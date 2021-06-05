@@ -51,8 +51,8 @@
         @endif
     @else
         <p class="home-msg">
-            <a href="/login" class="body-link">Login</a> or 
-            <a href="/register" class="body-link">register</a> 
+            <a href="/login" class="body-link">LOGIN</a> or 
+            <a href="/register" class="body-link">REGISTER</a> 
             to create a  team.
         </p>
     @endif

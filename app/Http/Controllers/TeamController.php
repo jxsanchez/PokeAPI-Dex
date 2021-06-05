@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 use App\Models\PokemonTeam;
+use App\Models\User;
+
+use PokePHP\PokeApi;
+use Carbon\Carbon;
 
 class TeamController extends Controller
 {
@@ -24,7 +27,45 @@ class TeamController extends Controller
     }
 
     public function getAllTeams() {
-        $allTeams = PokemonTeam::all();
+        $dbTeams = PokemonTeam::all();
+
+        // print_r($dbTeams);
+
+        $allTeams = array();
+
+        foreach($dbTeams as $team) {
+            $api = new PokeApi;
+
+            $teamArr = explode("|", $team["team"]);
+            
+            $teamObj = (object)[];
+            $tempArr = array();
+
+            $teamCreator = User::findOrFail($team->userId);
+
+            // Set Creator ID, Creator name, like count, and date updated
+            $teamObj->userId = $team->userId;
+            $teamObj->userName = $teamCreator->name;
+            $teamObj->likeCount = $team->likeCount;
+            $teamObj->updated_at = $team->updated_at->diffForHumans();
+
+            foreach($teamArr as $pokemon) {
+                $tempPokeObj = (object)[];
+
+                $pokemonData = json_decode($api->pokemon($pokemon), true);
+
+                $tempPokeObj->name = $pokemon;
+                $tempPokeObj->sprite_url = $pokemonData["sprites"]["versions"]["generation-viii"]["icons"]["front_default"];
+
+                array_push($tempArr, $tempPokeObj);
+            }
+            
+            // Set team array with name and url
+            $teamObj->team = $tempArr;
+
+            // Push current user's team with all info onto allTeams array
+            array_push($allTeams, $teamObj);
+        }
 
         return view("teams", [
             "allTeams" => $allTeams
