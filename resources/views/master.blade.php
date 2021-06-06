@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="/style.css">
     
+    <link rel="shortcut icon" type="image/x-icon" href="img/site-icon.png">
     <title>@yield("title")</title>
 </head>
 <body>
