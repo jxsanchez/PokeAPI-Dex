@@ -17,7 +17,7 @@ function likeTeam(teamId, userId, likeCount) {
             $("#likes-container-" + teamId).html(data.msg);
         },
         error: function (data) {
-            $("#likes-container-" + teamId).html(JSON.stringify(data));
+            $("#likes-container-" + teamId).html("there was an error, please reload the page!");
         },
     });
 
