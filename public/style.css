@@ -488,8 +488,7 @@ footer p {
 
     /************************* TEAMS.BLADE.PHP *************************/
     .teams-container {
-        background: #c4c9ef;
-        padding: 25px 40px;
+        padding: 25px 40px 60px;
         width: 100%;
     }
 
