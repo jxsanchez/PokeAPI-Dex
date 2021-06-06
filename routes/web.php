@@ -29,6 +29,7 @@ Route::get("/teams", "TeamController@getAllTeams");
 Route::post("/pokemon", "PokemonController@showPokemon");
 Route::post("/team/add", "TeamController@add");
 Route::post("/team/remove", "TeamController@remove");
+Route::post("/liketeam", "AjaxController@likeTeam");
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

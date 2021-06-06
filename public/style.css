@@ -379,6 +379,23 @@ a:visited {
     height: fit-content;
 }
 
+.submit-like-btn {
+    background: none;
+    color: #fff;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.submit-like-btn:hover {
+    color: #6270d5;
+}
+
+.submit-like-btn:focus {
+    outline: none;
+}
+
 /************************* FOOTER.BLADE.PHP *************************/
 .footer {
     background: #ffde00;

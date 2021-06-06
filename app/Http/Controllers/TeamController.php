@@ -20,6 +20,7 @@ class TeamController extends Controller
         $team->userId = Auth::id();
         $team->team = $req->pokemonName;
         $team->pokemonCount = "1";
+        $team->likedBy = "";
         
         $team->save();
 
@@ -44,9 +45,11 @@ class TeamController extends Controller
             $teamCreator = User::findOrFail($team->userId);
 
             // Set Creator ID, Creator name, like count, and date updated
+            $teamObj->id = $team->id;
             $teamObj->userId = $team->userId;
             $teamObj->userName = $teamCreator->name;
             $teamObj->likeCount = $team->likeCount;
+            $teamObj->likedBy = $team->likedBy;
             $teamObj->updated_at = $team->updated_at->diffForHumans();
 
             foreach($teamArr as $pokemon) {
