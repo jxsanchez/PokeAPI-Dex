@@ -34,7 +34,7 @@
                     <p class="trainer-name">TRAINER: {{$team->userName}}</p>
                 @endif
 
-                <div class="row team-container d-flex justify-content-start" style="width: fit-content">
+                <div class="row team-container d-flex justify-content-start" >
                     @foreach($team->team as $pokemon)
                         <div class="pokemon-icon-container team-pokemon-container col-sm-2 d-flex flex-column justify-content-center align-items-start">
                             <a href="/pokemon/{{$pokemon->name}}" class="d-flex flex-column team-pokemon-link">
