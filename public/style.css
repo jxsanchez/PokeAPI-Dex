@@ -349,7 +349,7 @@ a:visited {
 /************************* TEAMS.BLADE.PHP *************************/
 .teams-container {
     background: #c4c9ef;
-    padding: 50px 50px;
+    padding: 50px;
     width: 80%;
 }
 
@@ -462,5 +462,12 @@ footer p {
         border-left: 10px solid #313131;
         border-right: 10px solid #313131;
         border-radius: 0px 0px 5px 5px;
+    }
+
+    /************************* TEAMS.BLADE.PHP *************************/
+    .teams-container {
+        background: #c4c9ef;
+        padding: 25px;
+        width: 100%;
     }
 }
