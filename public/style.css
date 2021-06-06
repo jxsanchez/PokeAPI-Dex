@@ -113,6 +113,10 @@ a:visited {
     color: #ff0000;
 }
 
+.dot-divider {
+    margin: 0 15px;
+}
+
 .fa {
     font-size: 1.3rem;
 }
@@ -190,6 +194,8 @@ a:visited {
 
 .pokemon-name {
     margin-bottom: 0;
+    margin-top: 10px;
+    text-align: center;
     font-size: 0.6rem;
 }
 
@@ -340,8 +346,32 @@ a:visited {
 .back-btn {
 }
 
+/************************* TEAMS.BLADE.PHP *************************/
+.teams-container {
+    background: #c4c9ef;
+    padding: 50px 50px;
+    width: 80%;
+}
+
+.trainer-name {
+    font-size: 0.9rem;
+}
+
 .team-info {
     padding: 15px 20px;
+}
+
+.team-pokemon-link {
+    color: #fff;
+}
+
+.team-pokemon-link:hover {
+    color: #6270d5;
+}
+
+.teams-stats-container {
+    margin-top: 10px;
+    font-size: 0.7rem;
 }
 
 /************************* FOOTER.BLADE.PHP *************************/
