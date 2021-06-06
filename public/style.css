@@ -361,6 +361,10 @@ a:visited {
     padding: 15px 20px;
 }
 
+.team-pokemon-container {
+    margin-right: 0;
+}
+
 .team-pokemon-link {
     color: #fff;
 }
@@ -369,9 +373,10 @@ a:visited {
     color: #6270d5;
 }
 
-.teams-stats-container {
+.team-stats-container {
     margin-top: 10px;
     font-size: 0.7rem;
+    height: fit-content;
 }
 
 /************************* FOOTER.BLADE.PHP *************************/
@@ -467,7 +472,11 @@ footer p {
     /************************* TEAMS.BLADE.PHP *************************/
     .teams-container {
         background: #c4c9ef;
-        padding: 25px 50px;
+        padding: 25px 40px;
         width: 100%;
+    }
+
+    .team-pokemon-container {
+        margin-right: 6px;
     }
 }
