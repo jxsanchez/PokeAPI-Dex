@@ -65,8 +65,14 @@ class TeamController extends Controller
                 // Set team array with name and url
                 $teamObj->team = $tempArr;
 
-                // Push current user's team with all info onto allTeams array
-                array_push($allTeams, $teamObj);
+                // Push current team object onto array, if current team belongs to logged in user, append to the front
+                if($teamObj->userId == Auth::id()) {
+                    array_unshift($allTeams, $teamObj);
+                } else {
+                    array_push($allTeams, $teamObj);
+                }
+                
+                
             }
         }
 

@@ -409,6 +409,10 @@ a:visited {
     font-size: 0.9rem;
 }
 
+.your-team {
+    color: #ffde00;
+}
+
 .team-info {
     padding: 15px 20px;
 }

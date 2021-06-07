@@ -25,11 +25,11 @@
         @foreach($allTeams as $key => $team)
         <!-- 0 padding on left/right to line up pokemon names on left -->
             <div class="container team-info" style="padding: 10px 0; width: 100%;">
-                @if(Auth::check() && $team->userId != Auth::id())
+                @if(Auth::check())
                     @if($team->userId != Auth::id())
                         <p class="trainer-name">TRAINER: {{$team->userName}}</p>
                     @else
-                        <p class="trainer-name">YOUR TEAM</p>
+                        <p class="trainer-name your-team">YOUR TEAM <i class="fa fa-star"></i></p>
                     @endif
                 @else
                     <p class="trainer-name">TRAINER: {{$team->userName}}</p>
