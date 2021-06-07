@@ -1,15 +1,14 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/jxsanchez/PokeAPI-Dex/blob/master/public/img/main-logo.png?raw=true" width="400"></a></p>
+<p align="center"><a href="https://young-hamlet-32305.herokuapp.com/" target="_blank"><img src="https://github.com/jxsanchez/PokeAPI-Dex/blob/master/public/img/main-logo.png?raw=true" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About PokéAPI Team Builder
 
-## About Laravel
+PokéAPI Team Builder is a web application that utilizes data from the <a href="https://pokeapi.co/" target="blank">PokéAPI</a> to allow users to interact with their favorite Pokémon in various ways including:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Viewing Pokémon information
+- Creating and updating a team of Pokémon
+- Viewing and liking teams created by other users
+
+is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
