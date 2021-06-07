@@ -53,7 +53,8 @@
         <p class="home-msg">
             <a href="/login" class="body-link">LOGIN</a> or 
             <a href="/register" class="body-link">REGISTER</a> 
-            to create a  team.
+            to create a  team or
+            <a href="/teams" class="body-link">VIEW</a> existing teams.
         </p>
     @endif
 
