@@ -145,7 +145,7 @@ a:visited {
 /************************* NAV.BLADE.PHP *************************/
 .navbar {
     background: #3b4cca;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .navbar a {
@@ -542,8 +542,7 @@ footer p {
 
     /************************* POKEMON.BLADE.PHP *************************/
     .pokemon-info-container {
-        padding: 0 30px;
-        margin-bottom: 30px;
+        padding: 15px 30px 70px;
     }
 
     .pokemon-name-container {

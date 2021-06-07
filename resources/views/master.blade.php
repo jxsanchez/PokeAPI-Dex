@@ -28,10 +28,8 @@
 </head>
 <body>
     @yield("nav")
-
     
     @yield("content")
-    
 
     @yield("footer")
 
