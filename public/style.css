@@ -532,6 +532,10 @@ footer p {
         font-size: 0.8rem;
     }
 
+    .search-pokemon-btn {
+        font-size: 0.8rem;
+    }
+
     .pokemon-select {
         font-size: 0.8rem;
     }
@@ -605,6 +609,10 @@ footer p {
     }
 
     .search-pokemon-form input {
+        font-size: 0.8rem;
+    }
+
+    .search-pokemon-btn {
         font-size: 0.8rem;
     }
 
