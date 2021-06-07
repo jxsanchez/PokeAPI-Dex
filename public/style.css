@@ -241,6 +241,23 @@ a:visited {
     font-size: 0.8rem;
 }
 
+.search-pokemon-input-container {
+    margin-bottom: 10px;
+}
+
+.search-pokemon-form {
+    width: 45%;
+}
+
+.search-pokemon-btn {
+    background: #cc0000;
+    color: #f3f3f3;
+}
+
+.search-pokemon-btn:hover {
+    background: #ff0000;
+}
+
 .gen-list-container {
     padding: 30px 0;
 }
@@ -507,6 +524,10 @@ footer p {
         width: auto;
     }
 
+    .search-pokemon-form {
+        width: 90%;
+    }
+
     .pokemon-select {
         font-size: 0.8rem;
     }
@@ -573,6 +594,10 @@ footer p {
     .main-logo {
         width: 50%;
         height: auto;
+    }
+
+    .search-pokemon-form {
+        width: 60%;
     }
 
     /************************* TEAMS.BLADE.PHP *************************/

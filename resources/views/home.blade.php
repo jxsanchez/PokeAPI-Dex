@@ -58,6 +58,18 @@
     @endif
 
     <div class="gen-list-container container">
+        <div class="search-pokemon-input-container row d-flex justify-content-center">
+            <form class="search-pokemon-form input-group mb-3" action="/pokemon" method="POST">
+                <input class="form-control" type="text" name="pokemonName" placeholder="Search by Name">
+                
+                {{csrf_field() }}
+
+                <div class="input-group-append">
+                    <button class="search-pokemon-btn btn btn-outline-secondary" type="submit">Go!</button>
+                </div>
+            </form>
+        </div>
+
         <div class="row">
             @for($i = 0; $i < 4; $i++)
                 <div class="col-sm">
@@ -65,7 +77,7 @@
                         <form action="/pokemon" method="POST">                
                             <!-- Create <select> options using list of Pokémon -->
                             <select name="pokemonName" class="pokemon-select form-control" onchange="this.form.submit()">
-                                <option value="none" selected disabled hidden>Generation {{$i + 1}}</option>
+                                <option value="none" selected disabled hidden>Gen {{$i + 1}}</option>
                                 @foreach($pokeLists[$i] as $pokemon)
                                     <option value="{{$pokemon["name"]}}">{{$currentNum++}} - {{ucfirst($pokemon["name"])}}</option>
                                 @endforeach
