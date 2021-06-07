@@ -1,7 +1,7 @@
 @section("nav")
 <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="/">
-        <img src="img/brand.png" height="75px" alt="">
+        <img src="img/brand.png" height="50px" alt="">
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
