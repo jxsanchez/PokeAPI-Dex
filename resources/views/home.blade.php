@@ -85,7 +85,7 @@
                         <form action="/pokemon" method="POST">                
                             <!-- Create <select> options using list of Pokémon -->
                             <select class="pokemon-select form-control" name="pokemonName" onchange="this.form.submit()">
-                                <option value="none" selected disabled hidden>Generation {{$i + 1}}</option>
+                                <option value="none" selected disabled hidden>Gen {{$i + 1}}</option>
                                 @foreach($pokeLists[$i] as $pokemon)
                                     <option value="{{$pokemon["name"]}}">{{$currentNum++}} - {{ucfirst($pokemon["name"])}}</option>
                                 @endforeach
