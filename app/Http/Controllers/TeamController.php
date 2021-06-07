@@ -28,46 +28,46 @@ class TeamController extends Controller
     }
 
     public function getAllTeams() {
+        $api = new PokeApi;
         $dbTeams = PokemonTeam::all()->sortByDesc("updated_at");
-
-        // print_r($dbTeams);
 
         $allTeams = array();
 
         foreach($dbTeams as $team) {
-            $api = new PokeApi;
+            // Add team to array if it has at least 1 Pokémon
+            if($team->pokemonCount > 0) {
+                $teamArr = explode("|", $team["team"]);
+                
+                $teamObj = (object)[];
+                $tempArr = array();
 
-            $teamArr = explode("|", $team["team"]);
-            
-            $teamObj = (object)[];
-            $tempArr = array();
+                $teamCreator = User::findOrFail($team->userId);
 
-            $teamCreator = User::findOrFail($team->userId);
+                // Set Creator ID, Creator name, like count, and date updated
+                $teamObj->id = $team->id;
+                $teamObj->userId = $team->userId;
+                $teamObj->userName = $teamCreator->name;
+                $teamObj->likeCount = $team->likeCount;
+                $teamObj->likedBy = $team->likedBy;
+                $teamObj->updated_at = $team->updated_at->diffForHumans();
 
-            // Set Creator ID, Creator name, like count, and date updated
-            $teamObj->id = $team->id;
-            $teamObj->userId = $team->userId;
-            $teamObj->userName = $teamCreator->name;
-            $teamObj->likeCount = $team->likeCount;
-            $teamObj->likedBy = $team->likedBy;
-            $teamObj->updated_at = $team->updated_at->diffForHumans();
+                foreach($teamArr as $pokemon) {
+                    $tempPokeObj = (object)[];
 
-            foreach($teamArr as $pokemon) {
-                $tempPokeObj = (object)[];
+                    $pokemonData = json_decode($api->pokemon($pokemon), true);
 
-                $pokemonData = json_decode($api->pokemon($pokemon), true);
+                    $tempPokeObj->name = $pokemon;
+                    $tempPokeObj->sprite_url = $pokemonData["sprites"]["versions"]["generation-viii"]["icons"]["front_default"];
 
-                $tempPokeObj->name = $pokemon;
-                $tempPokeObj->sprite_url = $pokemonData["sprites"]["versions"]["generation-viii"]["icons"]["front_default"];
+                    array_push($tempArr, $tempPokeObj);
+                }
+                
+                // Set team array with name and url
+                $teamObj->team = $tempArr;
 
-                array_push($tempArr, $tempPokeObj);
+                // Push current user's team with all info onto allTeams array
+                array_push($allTeams, $teamObj);
             }
-            
-            // Set team array with name and url
-            $teamObj->team = $tempArr;
-
-            // Push current user's team with all info onto allTeams array
-            array_push($allTeams, $teamObj);
         }
 
         return view("teams", [
