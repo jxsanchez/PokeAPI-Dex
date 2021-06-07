@@ -168,14 +168,14 @@ a:visited {
 }
 
 /************************* LOGIN.BLADE.PHP *************************/
-.login-form {
+.account-form {
     padding: 25px 30px;
     font-size: 0.8rem;
     margin-top: 7%;
     background: #f3f3f3;
 }
 
-.login-heading {
+.account-form-heading {
     font-size: 1.3rem;
 }
 
@@ -191,14 +191,14 @@ a:visited {
     position: initial;
 }
 
-.login-btn {
+.account-form-submit-btn {
     font-size: 0.8rem;
     padding: 10px 20px;
     background: #cc0000;
     border: none;
 }
 
-.login-btn:hover {
+.account-form-submit-btn:hover {
     background: #ff0000;
 }
 

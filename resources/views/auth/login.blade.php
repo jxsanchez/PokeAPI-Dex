@@ -10,8 +10,8 @@
 <div class="login-container container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="login-form card">
-                <div class="login-heading card-header">{{ __('Login') }}</div>
+            <div class="account-form card">
+                <div class="account-form-heading card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -59,7 +59,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="login-btn btn btn-primary">
+                                <button type="submit" class="account-form-submit-btn btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
 
