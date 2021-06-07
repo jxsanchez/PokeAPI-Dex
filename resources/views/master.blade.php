@@ -29,9 +29,9 @@
 <body>
     @yield("nav")
 
-    <div class="container-fluid">
-        @yield("content")
-    </div>
+    
+    @yield("content")
+    
 
     @yield("footer")
 

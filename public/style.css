@@ -1,6 +1,7 @@
 /************************* TYPES *************************/
 .type-btn {
     border-radius: 5px;
+    border: none;
     color: #fff;
     font-size: 0.8rem;
     font-weight: bold;
@@ -159,9 +160,6 @@ a:visited {
 
 .nav-item {
     padding-right: 15px;
-}
-
-.navbar-toggler {
 }
 
 .navbar-toggler:focus {
@@ -460,6 +458,11 @@ footer p {
 
 /************************* MEDIA QUERIES *************************/
 @media (max-width: 768px) {
+    /************************* NAV.BLADE.PHP *************************/
+    .navbar {
+        padding: 10px 20px;
+    }
+
     /************************* LOGIN.BLADE.PHP & REGISTER.BLADE.PHP *************************/
     .account-form-container {
         padding: 30px;
@@ -553,5 +556,73 @@ footer p {
 
     .team-pokemon-container {
         margin-right: 6px;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 926px) and (orientation: landscape) {
+    /************************* NAV.BLADE.PHP *************************/
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    /************************* HOME.BLADE.PHP *************************/
+    .home-container {
+        padding: 20px;
+    }
+
+    .main-logo {
+        width: 50%;
+        height: auto;
+    }
+
+    /************************* TEAMS.BLADE.PHP *************************/
+    .teams-container {
+        padding: 50px;
+        margin: 0 auto;
+        width: 100vw;
+    }
+
+    /************************* POKEMON.BLADE.PHP *************************/
+    .pokemon-info-container {
+        padding: 15px 30px 70px;
+    }
+
+    .poke-img {
+        width: 90%;
+    }
+
+    .pokemon-name-container {
+        justify-content: center;
+    }
+
+    .poke-name {
+        font-size: 1.2rem;
+    }
+
+    .poke-desc {
+        font-size: 0.7rem;
+        margin-bottom: 0;
+    }
+
+    .options-container {
+        position: initial;
+        padding: 15px 0;
+    }
+
+    .options-col,
+    .options-text-col {
+        font-size: 0.7rem;
+    }
+
+    .options-text-col {
+        border-top: 7px solid #3b4cca;
+        border-left: 7px solid #3b4cca;
+        border-bottom: 7px solid #3b4cca;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .options-col {
+        border: 7px solid #313131;
+        border-radius: 0 5px 5px 0;
     }
 }

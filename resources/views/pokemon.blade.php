@@ -37,15 +37,15 @@
     
                 <div class="type-container">
                     <!-- Use Pokémon type to set class name -->
-                    <div class="d-inline text-center type-btn {{$pokemon["types"][0]["type"]["name"]}}">
+                    <button class="d-inline text-center type-btn {{$pokemon["types"][0]["type"]["name"]}}">
                         {{$pokemon["types"][0]["type"]["name"]}}
-                    </div>
+                    </button>
                 
                     <!-- Prints second type if second type exists -->
                     @if(count($pokemon["types"]) == 2)
-                        <div class="d-inline text-center type-btn {{$pokemon["types"][1]["type"]["name"]}}">
+                        <button class="d-inline text-center type-btn {{$pokemon["types"][1]["type"]["name"]}}">
                             {{$pokemon["types"][1]["type"]["name"]}}
-                        </div>
+                        </button>
                     @endif
                 </div>
         
@@ -53,48 +53,7 @@
                     {{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}
                 </p>
 
-                {{-- <div class="accordion" id="accordionExample">
-                    <div class="card">
-                      <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Evolutionary Chain
-                          </button>
-                        </h2>
-                      </div>
-                  
-                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                          <!-- Evolution Line -->
-                <div class="evo-line-container">
-                    <div class="evo-line-row row d-flex align-items-center">
-                        <!-- Display evolution line with each stage in its own column -->
-                        @foreach($evoChainArr as $key=>$stage)
-                            <div class="evo-line-col col-md d-flex flex-column justify-content-center">
-                                @foreach($stage as $currMon)
-                                    <div class="stage-container d-flex align-items-center">
-                                        <!-- Display arrow from previous evolution to current Pokémon-->
-                                        @if($key != 0) 
-                                            <i class="next-evo-arrow-right fa fa-arrow-right"></i>
-                                        @endif
-                                        <a  class="evo-line-stage d-flex flex-column align-items-center justify-content-center" 
-                                            href="/pokemon/{{$currMon["species"]["name"]}}">
-                                            <img class="evo-chain-icon" src="{{$currMon["sprites"]["versions"]["generation-viii"]["icons"]["front_default"]}}" alt="">
-                                            {{ucfirst($currMon["species"]["name"])}}
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endforeach
-                    </div>
-                </div> <!-- end of evo-line-container -->
-                        </div>
-                      </div>
-                    </div>
-                    
-                  </div> --}}
-
-                <div class="row options-container">
+                <div class="options-container row">
                     <div class="option-col options-text-col col-md-6">
                         @if(Auth::check())
                             What will YOU do?
