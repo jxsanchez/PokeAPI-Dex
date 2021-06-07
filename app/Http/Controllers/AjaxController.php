@@ -17,7 +17,7 @@ class AjaxController extends Controller
             $updatedLikedBy = "";
 
             if($team->likeCount < 1) {
-                $updatedLikedBy = Auth::id()."|";
+                $updatedLikedBy = Auth::id();
             } else {
                 // Get likedBy into array
                 $likeArr = explode("|", $team->likedBy);
@@ -28,7 +28,6 @@ class AjaxController extends Controller
                 // Revert array to deliminated string
                 $updatedLikedBy = implode("|", $likeArr);
             }
-            
 
             // Update likedBy string
             PokemonTeam::where("id", $req->teamId)->update(array(
