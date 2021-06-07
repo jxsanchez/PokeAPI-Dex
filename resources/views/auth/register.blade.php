@@ -1,5 +1,11 @@
 @extends('master')
 
+@section("title", "Register | PokéAPI Team Builder")
+
+@section("nav")
+    @include("nav")
+@stop
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -75,3 +81,7 @@
     </div>
 </div>
 @endsection
+
+@section("footer")
+    @include("footer")
+@stop

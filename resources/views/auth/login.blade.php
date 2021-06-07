@@ -1,5 +1,7 @@
 @extends('master')
 
+@section("title", "Login | PokéAPI Team Builder")
+
 @section("nav")
     @include("nav")
 @stop
