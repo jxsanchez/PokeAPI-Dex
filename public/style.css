@@ -528,6 +528,10 @@ footer p {
         width: 90%;
     }
 
+    .search-pokemon-form input {
+        font-size: 0.8rem;
+    }
+
     .pokemon-select {
         font-size: 0.8rem;
     }
@@ -598,6 +602,10 @@ footer p {
 
     .search-pokemon-form {
         width: 60%;
+    }
+
+    .search-pokemon-form input {
+        font-size: 0.8rem;
     }
 
     /************************* TEAMS.BLADE.PHP *************************/
