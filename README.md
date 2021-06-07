@@ -4,9 +4,9 @@
 
 PokéAPI Team Builder is a web application that utilizes data from the <a href="https://pokeapi.co/" target="blank">PokéAPI</a> to allow users to interact with their favorite Pokémon in various ways including:
 
-- Viewing Pokémon information
+- [Viewing Pokémon information](https://young-hamlet-32305.herokuapp.com/pokemon/roserade)
 - Creating and updating a team of Pokémon
-- Viewing and liking teams created by other users
+- [Viewing and liking teams created by other users](https://young-hamlet-32305.herokuapp.com/teams)
 
 is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
