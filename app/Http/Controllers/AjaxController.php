@@ -14,15 +14,17 @@ class AjaxController extends Controller
             // Increment likeCount by 1
             PokemonTeam::where("id", $req->teamId)->increment("likeCount", 1);
 
+            // Updated string of users who have liked this team
             $updatedLikedBy = "";
 
             if($team->likeCount < 1) {
+                // Set new likeBy string to logged-in user's ID if no likes yet
                 $updatedLikedBy = Auth::id();
             } else {
                 // Get likedBy into array
                 $likeArr = explode("|", $team->likedBy);
 
-                // Add user's id to likedBy array
+                // Add logged-in user's id to likedBy array
                 array_push($likeArr, Auth::id());
 
                 // Revert array to deliminated string
@@ -35,11 +37,11 @@ class AjaxController extends Controller
             ));
         }
 
+        // Updated like count message
         $msg = (intval($req->likeCount + 1))." Like";
 
-        if($req->likeCount + 1 > 1) {
-            $msg .= "s";
-        }
+        // Add "s" to "Like" if like count is greater than 1.
+        $msg .= ($req->likeCount + 1 > 1) ? "s" : "";            
 
         return response()->json(array("msg" => $msg));
     }

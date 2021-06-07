@@ -1,3 +1,7 @@
+/* 
+    teamId - id of team to be like
+    
+*/
 function likeTeam(teamId, userId, likeCount) {
     $.ajaxSetup({
         headers: {
