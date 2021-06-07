@@ -468,6 +468,10 @@ footer p {
         width: 100%;
     }
 
+    .account-form-heading {
+        margin-bottom: -15px;
+    }
+
     .forgot-pass-btn {
         margin-top: 5px;
         font-size: 0.6rem;
