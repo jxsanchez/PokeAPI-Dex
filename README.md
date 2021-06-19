@@ -10,4 +10,4 @@ PokéAPI Team Builder is a web application that utilizes data from the <a href="
 
 ## Contact
 
-If you have questions concering the application, please reach me using <a href="https://jxsdev.com/#contact" target="blank">this contact form</a>.
+If you have questions concering the application, please reach me using <a href="https://mysterious-lake-68452.herokuapp.com/#contact" target="blank">this contact form</a>.
