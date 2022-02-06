@@ -17,7 +17,7 @@ class PokemonController extends Controller
         $pokemon = json_decode($api->pokemon($req->pokemonName), true);
 
         if(is_string($pokemon)) {
-            return redirect()->back()->withErrors(['error' => 'The Pokémon you are looking for cannot be found!'])->withInput();
+            return redirect()->back()->withErrors(['error' => 'The Pokémon you are looking for cannot be found!']);
         }
 
         $pokemonSpecies = json_decode($api->pokemonSpecies($req->pokemonName), true);
@@ -39,5 +39,24 @@ class PokemonController extends Controller
             "pokemonSpecies" => $pokemonSpecies,
             "team" => (object)["pokemonCount" => "0"]
         ]);
+    }
+
+    public function test() {
+        $api = new PokeApi;
+
+        $i = 1;
+
+        $species = json_decode($api->pokemonSpecies($i), true);
+        $pokemon = json_decode($api->pokemon($i), true);
+
+        dd($species);
+
+        // dd($response);
+
+        while(!is_string($response)) {
+            $i++;
+        }
+
+        echo $i;
     }
 }
