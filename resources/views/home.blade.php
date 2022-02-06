@@ -9,29 +9,17 @@
 
 <!-- Set page content -->
 @section("content")
-@php
-    $currentNum = 1; // Use to display Pokémon number next to name in select
-
-    // Create array of Pokémon in team if user is logged in
-    if(Auth::check()) {
-        if($team->pokemonCount > 1) {
-            $teamArr = explode("|", $team->team);
-        } else if($team->pokemonCount == 1) {
-            $teamArr = [$team->team];
-        }
-    }
-@endphp
 <div class="container home-container d-flex flex-column align-items-center justify-content-center">
     <img class="main-logo" src="img/main-logo.png" alt="PokéAPI Team Builder Logo">
 
     @if(Auth::check())
-        @if($team->pokemonCount > 0)
+        @if($team ?? '')
             <div class="row team-container d-flex justify-content-center">
-                    @foreach($teamArr as $key=>$pokemon)
+                    @foreach($team as $pokemon)
                     <div class="col-sm-2 pokemon-icon-container d-flex flex-column align-items-center">
-                        <a href="/pokemon/{{$pokemon}}" class="d-flex flex-column align-items-center">
-                            <img class="pokemon-icon" src="{{$teamIcons[$key]}}" alt="">
-                            <p class="pokemon-name">{{ucfirst($pokemon)}}</p>
+                        <a href="/pokemon/{{ $pokemon->name }}" class="d-flex flex-column align-items-center">
+                            <img class="pokemon-icon" src="{{ $pokemon->sprite_url }}" alt="">
+                            <p class="pokemon-name">{{ ucfirst($pokemon->name) }}</p>
                         </a>
 
                         <form action="/team/remove" method="post">
@@ -84,7 +72,7 @@
                             <select name="pokemonName" class="pokemon-select form-control" onchange="this.form.submit()">
                                 <option value="none" selected disabled hidden>Gen {{$i + 1}}</option>
                                 @foreach($pokeLists[$i] as $pokemon)
-                                    <option value="{{$pokemon["name"]}}">{{$currentNum++}} - {{ucfirst($pokemon["name"])}}</option>
+                                    <option value="{{ $pokemon->name }}">{{ $pokemon->pokedex_number }} - {{ ucfirst($pokemon->name) }}</option>
                                 @endforeach
                     
                                 {{csrf_field() }}
@@ -104,7 +92,7 @@
                             <select class="pokemon-select form-control" name="pokemonName" onchange="this.form.submit()">
                                 <option value="none" selected disabled hidden>Gen {{$i + 1}}</option>
                                 @foreach($pokeLists[$i] as $pokemon)
-                                    <option value="{{$pokemon["name"]}}">{{$currentNum++}} - {{ucfirst($pokemon["name"])}}</option>
+                                    <option value="{{$pokemon["name"]}}">{{ $pokemon->pokedex_number }} - {{ucfirst($pokemon["name"])}}</option>
                                 @endforeach
                     
                                 {{csrf_field() }}
