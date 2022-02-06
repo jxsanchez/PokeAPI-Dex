@@ -69,6 +69,10 @@
                     <button class="search-pokemon-btn btn btn-outline-secondary" type="submit">Go!</button>
                 </div>
             </form>
+
+            @if ($errors->any())
+                <p class="error">{{ $errors->first() }}</p>
+            @endif
         </div>
 
         <div class="row">

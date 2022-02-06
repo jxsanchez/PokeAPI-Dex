@@ -135,6 +135,12 @@ a:visited {
     margin: 5px 0 15px;
 }
 
+.error {
+    color: #ff0000;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
 /************************* BOOTSTRAP *************************/
 .container {
     /* background: #fafafa; */

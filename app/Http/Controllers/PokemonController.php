@@ -15,7 +15,13 @@ class PokemonController extends Controller
 
         // Get Pokémon data
         $pokemon = json_decode($api->pokemon($req->pokemonName), true);
+
+        if(is_string($pokemon)) {
+            return redirect()->back()->withErrors(['error' => 'The Pokémon you are looking for cannot be found!'])->withInput();
+        }
+
         $pokemonSpecies = json_decode($api->pokemonSpecies($req->pokemonName), true);
+
 
         // If authenticated and has a team, use team from database
         if(Auth::check() && $team = PokemonTeam::where("userId", Auth::id())->first()) {
