@@ -1,7 +1,7 @@
 @extends("master")
 
 <!-- Set title of page (don't need double set of {} because this isn't an echo) -->
-@section("title", "#".$pokemonSpecies["pokedex_numbers"][0]["entry_number"]." ".ucfirst($pokemon["name"])." | PokéAPI Team Builder ")
+@section("title", "#".$pokemon->pokedex_number." ".ucfirst($pokemon->name)." | PokéAPI Team Builder ")
 
 @section("nav")
     @include("nav")
@@ -9,48 +9,39 @@
 
 <!-- Set page content -->
 @section("content")
-    @php
-        $i = 0;
-
-        // Iterate through flavor text until an english description is found
-        while($pokemonSpecies["flavor_text_entries"][$i]["language"]["name"] != "en") {
-            $i++;
-        }
-    @endphp
-
     <div class="pokemon-info-container container d-flex align-items-center">
         <div class="row">
             <!-- Pokémon Image -->
             <div class="col-md-6">
                 <img class="poke-img"
-                src="{{$pokemon["sprites"]["other"]["official-artwork"]["front_default"]}}" 
-                alt="{{$pokemon["name"]}}" />
+                src="{{ $pokemon->artwork_url }}" 
+                alt="{{ $pokemon->name }}" />
             </div>
 
             <div class="poke-info-col col-md-6">
                 <!-- Pokémon Name and Add Button -->
                 <div class="poke-name-container d-flex align-items-center">
                     <h1 class="poke-name">
-                        #{{$pokemonSpecies["pokedex_numbers"][0]["entry_number"]}} {{ucfirst($pokemon["name"])}}
+                        #{{ $pokemon->pokedex_number }} {{ ucfirst($pokemon->name) }}
                     </h1>
                 </div>
     
                 <div class="type-container">
                     <!-- Use Pokémon type to set class name -->
-                    <button class="d-inline text-center type-btn {{$pokemon["types"][0]["type"]["name"]}}">
-                        {{$pokemon["types"][0]["type"]["name"]}}
+                    <button class="d-inline text-center type-btn {{$pokemon->type1}}">
+                        {{$pokemon->type1}}
                     </button>
                 
                     <!-- Prints second type if second type exists -->
-                    @if(count($pokemon["types"]) == 2)
-                        <button class="d-inline text-center type-btn {{$pokemon["types"][1]["type"]["name"]}}">
-                            {{$pokemon["types"][1]["type"]["name"]}}
+                    @if($pokemon->type2)
+                        <button class="d-inline text-center type-btn {{ $pokemon->type2 }}">
+                            {{ $pokemon->type2 }}
                         </button>
                     @endif
                 </div>
         
                 <p class="poke-desc">
-                    {{$pokemonSpecies["flavor_text_entries"][$i]["flavor_text"]}}
+                    {{ $pokemon->description }}
                 </p>
 
                 <div class="options-container row">

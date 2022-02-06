@@ -41,25 +41,30 @@ class StorePokemonFromPokeAPI extends Command
     {
         $api = new PokeApi;
 
+        // Start at first Pokémon.
         $i = 1;
 
+        // Get data for Pokémon
         $pokemonResponse = json_decode($api->pokemon($i), true);
 
         // Call PokéAPI with current number until string (error) is returned.
         while(!is_string($pokemonResponse)) {
             $speciesResponse = json_decode($api->pokemonSpecies($i), true);
 
+            // Skip Pokémon if data already exists.
             if(Pokemon::where([
                 ['pokedex_number', '=', $pokemonResponse['id']],
                 ['name', '=', $pokemonResponse['name']]
             ])->exists()) {
+                // Attempt to get info for next number
                 $pokemonResponse = json_decode($api->pokemon($i++), true);
                 continue;
             }
-
-            $pokemon = new Pokemon();
-
+            
             echo "Creating Pokedex entry for ".$pokemonResponse['name']."\r\n";
+
+            // Store Pokémon info in database
+            $pokemon = new Pokemon();
 
             $pokemon->pokedex_number = $pokemonResponse['id'];
             $pokemon->generation     = $this->getGeneration($speciesResponse['generation']['url']);
@@ -72,16 +77,23 @@ class StorePokemonFromPokeAPI extends Command
 
             $pokemon->save();
 
+            // Update response to next Pokémon
             $pokemonResponse = json_decode($api->pokemon($i++), true);
         }
     }
 
+    /**
+     * Use the Pokémon generation url returned from species endpoint to get generation
+     */
     public function getGeneration($url) {
         $urlArr = explode('/', $url);
 
         return $urlArr[count($urlArr) - 2];
     }
 
+    /**
+     * Find the first English Pokédex entry for the specified Pokémon
+     */
     public function getDexDescription($descriptions) {
         $i = 0;
         
