@@ -13,7 +13,7 @@
     <img class="main-logo" src="img/main-logo.png" alt="PokéAPI Team Builder Logo">
 
     @if(Auth::check())
-        @if($team ?? '')
+        @if(($team ?? '') && $team[0])
             <div class="row team-container d-flex justify-content-center">
                     @foreach($team as $pokemon)
                     <div class="col-sm-2 pokemon-icon-container d-flex flex-column align-items-center">
@@ -23,7 +23,7 @@
                         </a>
 
                         <form action="/team/remove" method="post">
-                            <input name="pokemonName" type="text" value="{{$pokemon}}" hidden>
+                            <input name="pokemonName" type="text" value="{{ $pokemon->name }}" hidden>
 
                             {{csrf_field() }}
 

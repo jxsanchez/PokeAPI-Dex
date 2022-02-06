@@ -28,15 +28,15 @@ class HomeController extends Controller
                 ->orderBy('pokedex_number', 'asc')
                 ->get();
         }
-
-        $viewData['pokeLists'] = $pokeLists;
         
         // Check if user logged in and if they have a team
         if(Auth::check() && $teamRecord = PokemonTeam::where("userId", Auth::id())->first()) {
+            // Explode team column to get Pokémon names
             $teamMembers = explode('|', $teamRecord->team);
 
             $team = [];
 
+            // Store record for each Pokémon on team 
             foreach($teamMembers as $pokemonName) {
                 $team[] = Pokemon::where('name', '=', $pokemonName)->first();
             }
@@ -44,6 +44,8 @@ class HomeController extends Controller
             // Add team to view data
             $viewData['team'] = $team;
         }
+
+        $viewData['pokeLists'] = $pokeLists;
 
         return view('home', $viewData);
     }
